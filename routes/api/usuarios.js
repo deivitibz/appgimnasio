@@ -29,8 +29,8 @@ router.post('/login', async (req,res)=>{
     if (usuario){
         const iguales = bcrypt.compareSync(req.body.password,usuario.password);
         if (iguales) {
-            createToken(usuario.id);
-            res.json ({ message: 'login correcto'})
+            //createToken(usuario.id);
+            res.json ({ message: 'login correcto', token: createToken(usuario.id)})
         } else {
             res.json({ message: 'error en email o password 2' })
         }
@@ -44,9 +44,9 @@ function createToken(userId){
     const payload = {
         userId: userId,
         createAt: moment().unix(),
-        expiredAt: moment().add()
+        expiredAt: moment().add(15,'minutes').unix()
     }
-    console.log(payload);
+    return jwt.sign(payload, process.env.SECRET_KEY)
     
 }
 

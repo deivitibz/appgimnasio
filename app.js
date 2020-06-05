@@ -3,11 +3,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const cors = require('cors');
 
 const clientesRouter = require('./routes/clientes');
 const apiRouter = require('./routes/api');
-
+const middlewares = require('./routes/middlewares')
 // variables de entorno
 require('dotenv').config()
 
@@ -27,19 +27,14 @@ require('./db').connect();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req,res,next)=>{
-  if (req.url === '/'){
-    res.redirect('/clientes')
-  } else {
-    next();
-  }
-})
+app.use(middlewares.mainRedirect)
 
 // gestion de rutas
 

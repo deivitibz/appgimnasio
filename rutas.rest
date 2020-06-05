@@ -21,13 +21,14 @@ GET http://localhost:3000/api/clientes
 
 ###
 POST http://localhost:3000/api/clientes
+User-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImNyZWF0ZUF0IjoxNTkxMzUwNzQ5LCJleHBpcmVkQXQiOjE1OTEzNTE2NDksImlhdCI6MTU5MTM1MDc0OX0.Cw3kbFjgezWn9kgcCOqZFvlvuOm_pTNfAt5xcVi-v5I
 Content-Type: application/json
 
 {
-    "nombre": "asdfas",
+    "nombre": "as",
     "apellidos": "Villuela",
     "direccion": "Plaza de España 12",
-    "email": "pepe@gmail.com",
+    "email": "c@v",
     "edad": 70,
     "sexo": "M",
     "cuota": 19.9,
@@ -74,3 +75,8 @@ Content-Type: application/json
     "email":"asd@asd.es",
     "password": "2345234"
 }
+
+### 
+
+GET http://localhost:3000/api/clientes
+User-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImNyZWF0ZUF0IjoxNTkxMzQ1OTk0LCJleHBpcmVkQXQiOjE1OTEzNDY4OTQsImlhdCI6MTU5MTM0NTk5NH0.dhROXncpUIgUIeZ8p0JqlyhxRn4PckAS_U7OiGgEo6U

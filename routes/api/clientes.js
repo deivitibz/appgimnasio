@@ -1,13 +1,17 @@
 const router = require('express').Router();
 const Cliente = require('../../models/cliente')
+const { isAdmin } = require('../middlewares')
+const { check, validationResult } = require('express-validator')
 
-// GET http://localhost:3000/api/cliente
+ // GET http://localhost:3000/api/cliente
 /* router.get('/',async (req,res)=>{
     const clientes = await Cliente.getAll()
     res.json(clientes)
 }) */
 
 router.get('/',(req,res)=>{
+    console.log(req.payload.userId);
+    
     Cliente.getAll()
     .then(clientes => res.json(clientes))
     .catch(err => res.json({error: err.message}))
@@ -16,7 +20,17 @@ router.get('/',(req,res)=>{
 // POST http://localhost:3000/api/clientes
 // Crea un nuevo cliente en la BBDD
 
-router.post('/',async (req,res)=>{
+router.post('/',isAdmin,[
+    check('email','El email es obligatorio y debe tener un formato correcto').exists().isEmail(),
+    check('nombre', 'El campo nombre es obligatorio').exists().isLength({ min: 3 })
+], 
+async (req,res)=>{
+
+    const errores = validationResult(req);
+    if(!errores.isEmpty()) {
+        return res.json(errores.array());
+    }
+
     const result = await Cliente.create(req.body)
     if (result['affectedRows'] === 1){
         const cliente = await Cliente.getById(result['insertId'])
