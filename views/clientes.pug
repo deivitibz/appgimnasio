@@ -1,0 +1,37 @@
+extends layout.pug
+
+block content
+    .container
+        .row
+            each cliente in rows
+                .col-3
+                    .card
+                        .card-header
+                            h2= cliente.nombre
+                            p= cliente.apellidos
+                            p= cliente.email
+    .container 
+        table.table.table-dark.table-striped
+            thead
+                tr
+                    th Nombre
+                    th Apellido
+                    th Direccion
+                    th Email
+                    th Edad
+                    th Sexo
+                    th Acciones
+                       
+            tbody
+                each cliente in rows
+                    tr
+                        td= cliente.nombre
+                        td= cliente.apellidos
+                        td= cliente.direccion
+                        td= cliente.email
+                        td= cliente.edad
+                        td= cliente.sexo
+                        td 
+                            a.btn.btn-primary(href="/clientes/"+cliente.id) Detalle
+                            a.btn.btn-danger.mx-2(href="/clientes/delete/"+cliente.id) Eliminar
+                            a.btn.btn-success(href="/clientes/edit/"+cliente.id) Editar

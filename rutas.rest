@@ -1,0 +1,76 @@
+POST http://localhost:3000/clientes/new
+
+###
+GET http://localhost:3000/clientes
+
+###
+GET http://localhost:3000/clientes/IDCLIENTE
+###
+GET http://localhost:3000/clientes/new
+###
+POST http://localhost:3000/clientes/create
+###
+GET http://localhost:3000/clientes/edit/IDCLIENTE
+###
+POST http://localhost:3000/clientes/update
+###
+GET http://localhost:3000/clientes/delete/IDCLIENTE
+
+###
+GET http://localhost:3000/api/clientes
+
+###
+POST http://localhost:3000/api/clientes
+Content-Type: application/json
+
+{
+    "nombre": "asdfas",
+    "apellidos": "Villuela",
+    "direccion": "Plaza de España 12",
+    "email": "pepe@gmail.com",
+    "edad": 70,
+    "sexo": "M",
+    "cuota": 19.9,
+    "fecha_nacimiento": "1949-03-04T23:00:00.000Z",
+    "dni": "0000890765"
+}
+
+###
+DELETE http://localhost:3000/api/clientes/3
+
+###
+PUT http://localhost:3000/api/clientes/4
+Content-Type: application/json
+
+{
+    "nombre": "asdfas",
+    "apellidos": "Villuela",
+    "direccion": "Plaza de España 12",
+    "email": "pepe@gmail.com",
+    "edad": 70,
+    "sexo": "M",
+    "cuota": 19.9,
+    "fecha_nacimiento": "1949-03-04T23:00:00.000Z",
+    "dni": "0000890765"
+}
+
+###
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "username": "asdf",
+    "email": "asd@asd.es",
+    "password": "2345234"
+}
+
+
+###
+
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email":"asd@asd.es",
+    "password": "2345234"
+}
